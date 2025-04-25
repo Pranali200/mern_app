@@ -1,0 +1,16 @@
+# Root node_modules (if any)
+node_modules/
+
+# Frontend
+/frontend/node_modules
+/frontend/package-lock.json
+
+# Backend
+/backend/node_modules
+/backend/package-lock.json
+# Other stuff
+*.env
+.DS_Store
+build/
+coverage/
+npm-debug.log*
