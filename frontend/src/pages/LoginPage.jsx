@@ -1,6 +1,22 @@
 import '../styles/LoginPage.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { useState } from 'react'
+import { login } from '../service/authService'
 export default function LoginPage(){
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const navigate = useNavigate();
+
+    const handleLogin = async ()=>{
+        login(email, password).then(({token,user}) =>{
+            localStorage.setItem('token', token);
+            console.log("LoginApi getting called")
+            navigate('/dashboard');
+        }).catch((error) =>{
+            console.error(error.response?.data.message)
+        })
+    }
     return (
         <div className="login-container">
             <div className="login-left">
@@ -12,9 +28,9 @@ export default function LoginPage(){
             <div className="login-right">
                 <h2>Welcome to Ques.AI</h2>
                 <form className="login-form">
-                    <input type="email" placeholder="Email Address" required></input>
-                    <input type="password" placeholder="Password" required></input>
-                    <button type="submit" className="login-button">Login</button>
+                    <input type="email" placeholder="Email Address" value = {email} onChange = {(e) =>setEmail(e.target.value)}></input>
+                    <input type="password" placeholder="Password" value = {password} onChange = {(e) =>setPassword(e.target.value)}></input>
+                    <button type ="button" onClick = {handleLogin} className="login-button">Login</button>
 
                     <p>Don't have an account?<Link to ="/create-account"> Create Account</Link></p>
                 </form>
