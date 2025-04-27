@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { createproject } from "../service/projectService"; // <-- Import your API function
 import '../styles/PopUp.css';
+import {useUser} from '../context/UserContext'
 
-export default function CreateProjectPopup({ userId, onClose, onCreate }) {
+export default function CreateProjectPopup({ onClose, onCreate }) {
   const [projectName, setProjectName] = useState('');
   const [error, setError] = useState('');
+  const {user} = useUser();
 
   const handleCreate = async () => {
     if (projectName.trim() === '') { 
@@ -13,7 +15,7 @@ export default function CreateProjectPopup({ userId, onClose, onCreate }) {
     }
 
     try {
-      const newProject = await createproject(userId, projectName);
+      const newProject = await createproject(user._id, projectName);
       onCreate(newProject); 
       setProjectName('');
       setError('');

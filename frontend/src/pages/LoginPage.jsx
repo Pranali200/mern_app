@@ -1,17 +1,20 @@
 import '../styles/LoginPage.css'
 import {Link, useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+import {useUser} from '../context/UserContext'
 import { login } from '../service/authService'
-export default function LoginPage(){
 
+export default function LoginPage(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { setUser } = useUser();
     const navigate = useNavigate();
 
     const handleLogin = async ()=>{
         login(email, password).then(({token,user}) =>{
             localStorage.setItem('token', token);
-            console.log("LoginApi getting called")
+            setUser(user);
+            console.log("Userdata from login",user._id)
             navigate('/dashboard');
         }).catch((error) =>{
             console.error(error.response?.data.message)

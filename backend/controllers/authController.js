@@ -13,7 +13,7 @@ exports.register = async (req, res) => {
         user = new User({ email, password: hashedPassword });
         await user.save();
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.status(201).json({ token, user });
     } catch (error) {
         console.error(error);
@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
             if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.json({ token, user });
     } catch (error) {
         console.error(error);

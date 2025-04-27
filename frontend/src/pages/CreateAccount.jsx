@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../service/authService";
+import {useUser} from '../context/UserContext'
 
 export default function CreateAccountPage(){
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
+    const { setUser } = useUser();
     const navigate = useNavigate()
 
 
     const handleRegister = async ()=>{
         register(email,password).then(({token,user}) =>{
             localStorage.setItem('token', token)
+            setUser(user);
             navigate('/dashboard')
         }).catch((error) =>{
             console.error(error.response?.data.message )
