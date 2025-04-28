@@ -45,4 +45,32 @@ const getProjectPodcasts = async (req, res) => {
   }
 };
 
-module.exports = { uploadYoutubePodcast, getProjectPodcasts };
+
+ const updatePodcast = async (req, res) => {
+    try {
+      const { podcastId } = req.params;
+      const { transcript } = req.body;
+  
+      if (!podcastId) {
+        return res.status(400).json({ message: "Podcast ID is required" });
+      }
+  
+      const updatedPodcast = await Podcast.findByIdAndUpdate(
+        podcastId,
+        { transcript },
+        { new: true } 
+      );
+  
+      if (!updatedPodcast) {
+        return res.status(404).json({ message: "Podcast not found" });
+      }
+  
+      res.status(200).json({ message: "Podcast updated successfully", podcast: updatedPodcast });
+    } catch (error) {
+      console.error('Error updating podcast:', error);
+      res.status(500).json({ message: "Server error" });
+    }
+  };
+  
+
+module.exports = { uploadYoutubePodcast, getProjectPodcasts,updatePodcast };
