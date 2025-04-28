@@ -1,8 +1,6 @@
-// src/pages/AddPodcastPage.jsx
 import LayoutWrapper from './LayoutWrapper';
-import YoutubePopup from './YoutubePopup'; // Assuming YoutubePopup path
-import { useState } from 'react';
-
+import YoutubePopup from './YoutubePopup'; 
+import {useState} from 'react'
 export default function AddPodcastPage() {
   const [isYoutubePopupOpen, setIsYoutubePopupOpen] = useState(false);
 
@@ -21,7 +19,6 @@ export default function AddPodcastPage() {
 
   return (
     <LayoutWrapper sectionTitle="Add Podcast">
-      {/* Options Grid */}
       <div className="options-grid">
         <div className="option-card">
           <i className="fas fa-rss fa-2x"></i>
@@ -46,7 +43,6 @@ export default function AddPodcastPage() {
         </div>
       </div>
 
-      {/* Upload Box */}
       <div className="upload-grid">
     <div className="upload-box">
       <i className="fas fa-cloud-upload-alt fa-3x" style={{ color: '#6b21a8', marginBottom: '1rem' }}></i>
@@ -59,7 +55,6 @@ export default function AddPodcastPage() {
     </div>
   </div>
 
-      {/* Youtube Popup */}
       {isYoutubePopupOpen && (
         <YoutubePopup onClose={closeYoutubePopup} />
       )}

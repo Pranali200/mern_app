@@ -1,6 +1,6 @@
 const Podcast = require('../models/Podcast');
 const Project = require('../models/Project');
-// Assume you have a helper function to fetch transcript
+
 const { getTranscriptFromYoutube } = require('../utils/youtubeTranscript');
 
 const uploadYoutubePodcast = async (req, res) => {
@@ -11,10 +11,7 @@ const uploadYoutubePodcast = async (req, res) => {
       return res.status(400).json({ message: "projectId, name, and videoUrl are required" });
     }
 
-    // 1. Fetch the transcript using videoUrl
     const transcript = await getTranscriptFromYoutube(videoUrl);
-
-    // 2. Save the new podcast
     const newPodcast = new Podcast({
       project: projectId,
       name,
@@ -22,8 +19,6 @@ const uploadYoutubePodcast = async (req, res) => {
     });
 
     await newPodcast.save();
-
-    // 3. Update project files count
     await Project.findByIdAndUpdate(projectId, { $inc: { files: 1 } });
 
     res.status(201).json({ message: "Podcast uploaded successfully", podcast: newPodcast });
@@ -33,7 +28,6 @@ const uploadYoutubePodcast = async (req, res) => {
   }
 };
 
-// 👇 (optional) To fetch all podcasts inside a project
 const getProjectPodcasts = async (req, res) => {
   try {
     const { projectId } = req.params;

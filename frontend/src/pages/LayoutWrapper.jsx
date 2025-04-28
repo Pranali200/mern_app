@@ -1,16 +1,14 @@
-// src/components/LayoutWrapper.jsx
 import '../styles/AddPodcast.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useLocation } from 'react-router-dom';
 
 export default function LayoutWrapper({ children, sectionTitle }) {
   const location = useLocation();
-  const { project } = location.state || { project: { name: 'Unknown Project' } };
+  const { project } = location.state ;
 
   return (
     <div className="page-container">
       <div className="page-content">
-        {/* Sidebar */}
         <aside className="sidebar">
           <h1>Ques.AI</h1>
           <nav>

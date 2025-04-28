@@ -47,6 +47,7 @@
 .popup-label {
   font-weight: 500;
   margin-bottom: 0.25rem;
+  text-align: left;
 }
 
 .popup-input, .popup-textarea {

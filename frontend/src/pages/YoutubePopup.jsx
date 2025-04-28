@@ -1,16 +1,27 @@
 
 import { useState } from 'react';
-import { FaYoutube } from 'react-icons/fa'; // YouTube icon
-
+import { FaYoutube } from 'react-icons/fa'; 
+import { useLocation } from 'react-router-dom';
+import {uploadYoutubePodcast} from '../service/podcastService'
 export default function YoutubePopup({ onClose }) {
   const [name, setName] = useState('');
-  const [transcript, setTranscript] = useState('');
+  const [videoUrl, setvideoUrl] = useState('');
+  const location = useLocation();
+  const { project } = location.state
+  let projectId= project._id;
+
 
   const handleUpload = () => {
-    console.log('Uploaded:', { name, transcript });
-    // TODO: Handle API upload here
+    if (!projectId || !name || !videoUrl) {
+      console.warn('Missing required fields for upload.');
+      return;
+    }
+  
+    uploadYoutubePodcast(projectId, name, videoUrl);
+    console.log('Uploaded:', { projectId, name, videoUrl });
     onClose();
   };
+  
 
   return (
     <div className="popup-overlay">
@@ -33,12 +44,12 @@ export default function YoutubePopup({ onClose }) {
             placeholder="Enter Name"
           />
 
-          <label className="popup-label" style={{ marginTop: '1rem' }}>Transcript</label>
+          <label className="popup-label" style={{ marginTop: '1rem' }}>Link</label>
           <textarea
             className="popup-textarea"
-            value={transcript}
-            onChange={(e) => setTranscript(e.target.value)}
-            placeholder="Enter Transcript"
+            value={videoUrl}
+            onChange={(e) => setvideoUrl(e.target.value)}
+            placeholder="Enter link"
             rows="4"
           />
         </div>
