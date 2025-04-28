@@ -1,20 +1,16 @@
 import LayoutWrapper from './LayoutWrapper';
-import YoutubePopup from './YoutubePopup'; 
-import {useState} from 'react'
+import YoutubePopup from './YoutubePopup';
+import PodcastManager from './PodcastManager';
+import { useProject } from '../context/ProjectContext';
+import { useState } from 'react';
+
 export default function AddPodcastPage() {
   const [isYoutubePopupOpen, setIsYoutubePopupOpen] = useState(false);
-
+  const  {project} = useProject();
+ let projectId = project._id;
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     console.log('Selected file:', file);
-  };
-
-  const handleYoutubeClick = () => {
-    setIsYoutubePopupOpen(true);
-  };
-
-  const closeYoutubePopup = () => {
-    setIsYoutubePopupOpen(false);
   };
 
   return (
@@ -26,9 +22,9 @@ export default function AddPodcastPage() {
           <p>Lorem ipsum dolor sit. Dolor lorem sit.</p>
         </div>
 
-        <div 
-          className="option-card" 
-          onClick={handleYoutubeClick}
+        <div
+          className="option-card"
+          onClick={() => setIsYoutubePopupOpen(true)}
           style={{ cursor: 'pointer' }}
         >
           <i className="fab fa-youtube fa-2x"></i>
@@ -43,21 +39,10 @@ export default function AddPodcastPage() {
         </div>
       </div>
 
-      <div className="upload-grid">
-    <div className="upload-box">
-      <i className="fas fa-cloud-upload-alt fa-3x" style={{ color: '#6b21a8', marginBottom: '1rem' }}></i>
-      <p>Select a file or drag and drop here (Podcast Media or Transcription Text)</p>
-      <p className="upload-info">MP4, MOV, MP3, WAV, PDF, DOCX or TXT file</p>
-      <label className="upload-button">
-        Select File
-        <input type="file" className="hidden-input" onChange={handleFileSelect} />
-      </label>
-    </div>
-  </div>
+     
+      <PodcastManager projectId={projectId} onFileSelect={handleFileSelect} />
 
-      {isYoutubePopupOpen && (
-        <YoutubePopup onClose={closeYoutubePopup} />
-      )}
+      {isYoutubePopupOpen && <YoutubePopup onClose={() => setIsYoutubePopupOpen(false)} />}
     </LayoutWrapper>
   );
 }

@@ -1,13 +1,12 @@
 
 import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa'; 
-import { useLocation } from 'react-router-dom';
 import {uploadYoutubePodcast} from '../service/podcastService'
+import {useProject} from '../context/ProjectContext'
 export default function YoutubePopup({ onClose }) {
   const [name, setName] = useState('');
   const [videoUrl, setvideoUrl] = useState('');
-  const location = useLocation();
-  const { project } = location.state
+  const  {project} = useProject();
   let projectId= project._id;
 
 

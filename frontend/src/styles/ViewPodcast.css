@@ -1,0 +1,33 @@
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .back-button, .edit-button {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .back-button i {
+    font-size: 20px;
+  }
+  
+  .edit-button {
+    background-color: #7f56d9;
+    color: white;
+    border: none;
+  }
+  
+  .edit-button:hover {
+    background-color: #6c46c2;
+  }
+  

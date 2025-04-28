@@ -130,7 +130,7 @@ body {
     color: #6b7280;
   }
   
-  .upload-box {
+  /* .upload-box {
     border: 2px dashed #d1d5db;
     padding: 2.5rem;
     border-radius: 0.5rem;
@@ -163,7 +163,7 @@ body {
   
   .upload-button:hover {
     background-color: #581c87;
-  }
+  } */
   
   .hidden-input {
     display: none;

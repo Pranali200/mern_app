@@ -14,7 +14,6 @@ export default function LoginPage(){
         login(email, password).then(({token,user}) =>{
             localStorage.setItem('token', token);
             setUser(user);
-            console.log("Userdata from login",user._id)
             navigate('/dashboard');
         }).catch((error) =>{
             console.error(error.response?.data.message)

@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles/CreateProjectPage.css'; 
-
+import {useProject} from '../context/ProjectContext'
 
 export default function ProjectList({ projects }) {
   const navigate = useNavigate();
+  const  {setProject} = useProject();
 
   const handleProjectClick = (project) => {
-    navigate('/addpodcast', { state: { project } });
+    setProject(project)
+    navigate('/addpodcast');
 };
 
   return (

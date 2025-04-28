@@ -1,10 +1,9 @@
 import '../styles/AddPodcast.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useLocation } from 'react-router-dom';
+import { useProject } from '../context/ProjectContext';
 
 export default function LayoutWrapper({ children, sectionTitle }) {
-  const location = useLocation();
-  const { project } = location.state ;
+  const { project } = useProject() ;
 
   return (
     <div className="page-container">
@@ -30,7 +29,6 @@ export default function LayoutWrapper({ children, sectionTitle }) {
           </div>
         </aside>
 
-        {/* Main Content */}
         <main className="main-content">
           <div className="breadcrumb">
             <i className="fas fa-home"></i>
@@ -43,7 +41,6 @@ export default function LayoutWrapper({ children, sectionTitle }) {
 
           <h2 className="section-title">{sectionTitle}</h2>
 
-          {/* Dynamic Children */}
           {children}
         </main>
       </div>
