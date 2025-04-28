@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import CreateProjectPopup from './CreateProjectPopup';
 import { getprojects } from '../service/projectService';
 import { useUser } from '../context/UserContext';
+import ProjectList from './ProjectList'; 
 
 export default function CreateProjectPage() {
     const [showPopUP, setShowPopUp] = useState(false);
     const [projects, setProjects] = useState([]);
-    const {user} = useUser();
+    const { user } = useUser();
+
     const fetchProjects = async () => {
         try {
             const data = await getprojects(user._id);
@@ -17,14 +19,12 @@ export default function CreateProjectPage() {
             console.error("Failed to fetch projects:", error);
         }
     };
-    
+
     useEffect(() => {
         if (user && user._id) {
-
             fetchProjects();
         }
     }, [user]);
-    
 
     const handleCreateProjectClick = () => {
         setShowPopUp(true);
@@ -37,7 +37,7 @@ export default function CreateProjectPage() {
     const handleCreateProject = () => {
         console.log("project created");
         setShowPopUp(false);
-        fetchProjects(); 
+        fetchProjects();
     };
 
     return (
@@ -69,26 +69,13 @@ export default function CreateProjectPage() {
                 ) : (
                     <>
                         <h1>Projects</h1>
-                        <div className="project-grid">
-                            {projects.map((project) => (
-                                <div className="project-card" key={project._id}>
-                                    <div className="project-initials">
-                                        {project.name.slice(0,2).toUpperCase()}
-                                    </div>
-                                    <div className="project-info">
-                                        <h2 className="project-name">{project.name}</h2>
-                                        <p className="project-files">{project.files} Files</p>
-                                        <p className="project-last-edited">Last edited recently</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
+                        <ProjectList projects={projects} />
                         <button onClick={handleCreateProjectClick} className="create-button">
                             + Create New Project
                         </button>
                     </>
                 )}
+
                 {showPopUP && (
                     <CreateProjectPopup onClose={handleClose} onCreate={handleCreateProject} />
                 )}
