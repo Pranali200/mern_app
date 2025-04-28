@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../service/authService";
 import logoWhite from '../images/logo_white.jpg'; 
-import {useUser} from '../context/UserContext'
+import { useUser } from '../context/UserContext';
 
 export default function CreateAccountPage() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -12,7 +13,8 @@ export default function CreateAccountPage() {
     const { setUser } = useUser();
 
     const handleRegister = async () => {
-        register(email, password).then(({ token, user }) => {
+        if (password !== confirmPassword) return;
+        register(name, email, password).then(({ token, user }) => {
             localStorage.setItem('token', token);
             setUser(user);
             navigate('/dashboard');
@@ -38,6 +40,12 @@ export default function CreateAccountPage() {
                     </div>
                     <h2>Create Your Account</h2>
                     <form className="login-form">
+                        <input
+                            type="text"
+                            placeholder="Full Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
                         <input
                             type="email"
                             placeholder="Email Address"
