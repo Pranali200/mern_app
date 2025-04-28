@@ -9,8 +9,8 @@ export const getpodcast = async (projectId) => {
     return data;
 }
 
-export const updatepodcast = async (podcastId) => {
-    const { data } = await API.get(`/podcast/podcastId/${podcastId}`);
+export const updatepodcast = async (podcastId, transcript) => {
+    const { data } = await API.put(`/podcast/${podcastId}`,transcript);
     return data;
 }
 

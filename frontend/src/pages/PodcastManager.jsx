@@ -70,7 +70,7 @@ export default function PodcastManager({ projectId, onFileSelect,refreshTrigger 
       </thead>
       <tbody>
         {podcasts.map((podcast, index) => (
-          <tr key={podcast.id}>
+          <tr key={podcast._id}>
             <td>{index + 1}</td> {/* <-- Display index (1-based) */}
             <td>{podcast.name}</td>
             <td>
@@ -87,7 +87,7 @@ export default function PodcastManager({ projectId, onFileSelect,refreshTrigger 
   })}
 </td>
 <td>
-  <button className="action-button view-button" onClick={() => navigate(`/view/${podcast.id}`)}>View</button>
+  <button className="action-button view-button" onClick={() => navigate(`/view/${podcast._id}`,{ state: { podcast } })}>View</button>
   <button className="action-button delete-button">Delete</button>
 </td>
 </tr>

@@ -2,15 +2,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../service/authService";
 import logoWhite from '../images/logo_white.jpg'; 
+import {useUser} from '../context/UserContext'
+
 export default function CreateAccountPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
+    const { setUser } = useUser();
 
     const handleRegister = async () => {
         register(email, password).then(({ token, user }) => {
             localStorage.setItem('token', token);
+            setUser(user);
             navigate('/dashboard');
         }).catch((error) => {
             console.error(error.response?.data.message);

@@ -3,15 +3,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import logoWhite from '../images/logo_white.jpg';
 import { login } from '../service/authService'
+import {useUser} from '../context/UserContext'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const { setUser } = useUser();
 
   const handleLogin = async () => {
     login(email, password).then(({ token, user }) => {
-      localStorage.setItem('token', token)
+        localStorage.setItem('token', token)
+        setUser(user);
       navigate('/dashboard')
     }).catch((error) => {
       console.error(error.response?.data.message)
