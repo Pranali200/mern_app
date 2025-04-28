@@ -9,3 +9,8 @@ export const getpodcast = async (projectId) => {
     return data;
 }
 
+export const updatepodcast = async (podcastId) => {
+    const { data } = await API.get(`/podcast/podcastId/${podcastId}`);
+    return data;
+}
+

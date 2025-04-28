@@ -16,7 +16,7 @@ function App() {
         <Route path="/create-account" element={<CreateAccountPage/>}></Route>
         <Route path = "/dashboard" element = { <ProjectProvider><CreateProjectPage/></ProjectProvider>}></Route>
         <Route path ="/addpodcast" element = {<ProjectProvider><AddPodcastPage/></ProjectProvider>}></Route>
-        <Route path ="/view" element = {<ProjectProvider><ViewPodcast/></ProjectProvider>}></Route>
+        <Route path ="/view/:id" element = {<ProjectProvider><ViewPodcast/></ProjectProvider>}></Route>
       </Routes>
       </UserProvider>
     </Router>

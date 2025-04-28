@@ -3,23 +3,30 @@ import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa'; 
 import {uploadYoutubePodcast} from '../service/podcastService'
 import {useProject} from '../context/ProjectContext'
-export default function YoutubePopup({ onClose }) {
+export default function YoutubePopup({ onClose,triggerRefresh  }) {
   const [name, setName] = useState('');
   const [videoUrl, setvideoUrl] = useState('');
   const  {project} = useProject();
   let projectId= project._id;
-
-
-  const handleUpload = () => {
+  
+  const handleUpload = async () => {
     if (!projectId || !name || !videoUrl) {
       console.warn('Missing required fields for upload.');
       return;
     }
   
-    uploadYoutubePodcast(projectId, name, videoUrl);
-    console.log('Uploaded:', { projectId, name, videoUrl });
-    onClose();
+    try {
+      await uploadYoutubePodcast(projectId, name, videoUrl);
+      console.log('Uploaded:', { projectId, name, videoUrl });
+  
+      if (triggerRefresh) triggerRefresh();
+    } catch (error) {
+      console.error('Upload failed:', error);
+    }
+  
+    onClose(); 
   };
+  
   
 
   return (

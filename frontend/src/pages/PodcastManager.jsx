@@ -5,7 +5,7 @@ import '../styles/PodcastManager.css'
 import { useNavigate } from 'react-router-dom';
 
 
-export default function PodcastManager({ projectId, onFileSelect }) {
+export default function PodcastManager({ projectId, onFileSelect,refreshTrigger  }) {
   const [podcasts, setPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function PodcastManager({ projectId, onFileSelect }) {
   useEffect(() => {
     const fetchData = async () => {
       if (!projectId) return;
-  
+
       try {
         const data = await getpodcast(projectId);
         console.log('Fetched podcast data:', data);
@@ -29,9 +29,9 @@ export default function PodcastManager({ projectId, onFileSelect }) {
         setLoading(false);
       }
     };
-  
+
     fetchData();
-  }, [projectId]);
+  }, [projectId, refreshTrigger]);
   
    
 
@@ -87,7 +87,7 @@ export default function PodcastManager({ projectId, onFileSelect }) {
   })}
 </td>
 <td>
-  <button className="action-button view-button" onClick={() => navigate(`/view`)}>View</button>
+  <button className="action-button view-button" onClick={() => navigate(`/view/${podcast.id}`)}>View</button>
   <button className="action-button delete-button">Delete</button>
 </td>
 </tr>

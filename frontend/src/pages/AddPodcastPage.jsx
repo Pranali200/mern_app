@@ -8,6 +8,9 @@ export default function AddPodcastPage() {
   const [isYoutubePopupOpen, setIsYoutubePopupOpen] = useState(false);
   const  {project} = useProject();
  let projectId = project._id;
+ const [refreshTrigger, setRefreshTrigger] = useState(0);
+
+const triggerRefresh = () => setRefreshTrigger(prev => prev + 1);
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     console.log('Selected file:', file);
@@ -40,9 +43,9 @@ export default function AddPodcastPage() {
       </div>
 
      
-      <PodcastManager projectId={projectId} onFileSelect={handleFileSelect} />
+      <PodcastManager projectId={projectId} onFileSelect={handleFileSelect} refreshTrigger={refreshTrigger}/>
 
-      {isYoutubePopupOpen && <YoutubePopup onClose={() => setIsYoutubePopupOpen(false)} />}
+      {isYoutubePopupOpen && <YoutubePopup onClose={() => setIsYoutubePopupOpen(false)}  triggerRefresh={triggerRefresh} />}
     </LayoutWrapper>
   );
 }

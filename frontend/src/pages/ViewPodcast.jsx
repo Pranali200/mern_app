@@ -1,10 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import LayoutWrapper from './LayoutWrapper';
 import '../styles/ViewPodcast.css'; 
 
 export default function ViewPodcast() {
-  //const { id } = useParams();
+
   const navigate = useNavigate();
+  const { id } = useParams();
+  console.log(id);
+
 
   return (
     <LayoutWrapper sectionTitle="View Podcast">
