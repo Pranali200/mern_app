@@ -4,8 +4,8 @@ export const createproject = async (userId, name) =>{
     return data;
 }
 
-export const getprojects = async (userId) =>{
-    const {data} = await API.post('/project/user/',{userId})
+export const getprojects = async (userId) => {
+    const { data } = await API.get(`/project/user/${userId}`);
     return data;
 }
 
