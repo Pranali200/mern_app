@@ -57,7 +57,7 @@ export default function CreateProjectPage() {
 
 
                         <img
-                            src="/assets/cuate.png"
+                            src="/images/cuate.png"
                             alt="Create Project Illustration"
                             className="illustration"
                         />

@@ -18,7 +18,6 @@ export default function CreateProjectPopup({ onClose, onCreate }) {
       onCreate(newProject);
       onClose();
     } catch (err) {
-      console.error('Error creating project:', err);
       setError('Failed to create project. Try again.');
     }
   };

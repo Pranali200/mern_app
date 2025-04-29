@@ -23,7 +23,6 @@ export default function LoginPage() {
 
   return (
     <div className="login-container">
-      {/* Left Section */}
       <div className="login-left">
         <div className="overlay"></div>
         <div className="left-content">
@@ -34,7 +33,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="login-right">
         <div className="form-wrapper">
           <div className="logo">

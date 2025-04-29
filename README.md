@@ -1,73 +1,115 @@
-# mern_app
-# frontend
+# Full Stack Project Setup (React + Node.js)
 
-# Getting Started with Create React App
+This project includes both a **Frontend** built with React and a **Backend** built with Node.js and Express.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## Frontend Setup (React)
 
-In the project directory, you can run:
+### 1. Create React App  
+Use the official React setup tool to initialize a new project.  
+Reference: [React Docs – Getting Started](https://react.dev/learn/start-a-new-react-project)
 
-### `npm start`
+```bash
+npx create-react-app frontend
+cd frontend
+2. Install Axios
+Axios is a popular promise-based HTTP client.
+Reference: Axios Docs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+bash
+Copy
+Edit
+npm install axios
+3. Install Font Awesome Icons
+Used for displaying vector icons in your components.
+Reference: Font Awesome React Docs
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+bash
+Copy
+Edit
+npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
+4. Configure .env for Frontend
+To connect the frontend to the backend dynamically, create an .env file in the root of your frontend directory:
 
-### `npm test`
+plaintext
+Copy
+Edit
+REACT_APP_BACKEND_URL=http://localhost:5000
+5. Start the Frontend App
+bash
+Copy
+Edit
+npm start
+This will run the app on http://localhost:3000 by default.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Backend Setup (Node.js + Express)
+1. Initialize Node Project
+Reference: Node.js Docs – npm init
 
-### `npm run build`
+bash
+Copy
+Edit
+mkdir backend
+cd backend
+npm init -y
+2. Install Express
+Express is a lightweight web framework for Node.js.
+Reference: Express.js Docs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+bash
+Copy
+Edit
+npm install express
+3. Install YouTube Transcript API
+Used to fetch transcripts from YouTube videos.
+Reference: youtube-transcript on npm
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+bash
+Copy
+Edit
+npm install youtube-transcript
+4. Install Other Dependencies
+mongoose: for MongoDB database connection
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+dotenv: for environment variable management
 
-### `npm run eject`
+cors: to enable Cross-Origin Resource Sharing
+Reference: Mongoose Docs, dotenv, CORS
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+bash
+Copy
+Edit
+npm install mongoose dotenv cors
+5. (Optional) Install Nodemon for Development
+Nodemon automatically restarts the server on file changes.
+Reference: nodemon Docs
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+bash
+Copy
+Edit
+npm install --save-dev nodemon
+Add this to your package.json:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+json
+Copy
+Edit
+"scripts": {
+  "start": "node index.js",
+  "dev": "nodemon index.js"
+}
+6. Configure .env for Backend
+To store backend configuration and secrets, create an .env file in the root of your backend directory:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+plaintext
+Copy
+Edit
+PORT=5000
+MONGO_URI=your_mongodb_connection_uri
+JWT_SECRET=your_jwt_secret_key
+7. Start the Backend Server
+bash
+Copy
+Edit
+npm run dev
+The backend server will run on http://localhost:5000 or the port you configure.
