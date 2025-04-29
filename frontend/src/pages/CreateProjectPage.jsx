@@ -1,10 +1,10 @@
 import '../styles/CreateProjectPage.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useState, useEffect } from 'react';
-import CreateProjectPopup from './CreateProjectPopup';
+import CreateProjectPopup from '../component/CreateProjectPopup';
 import { getprojects } from '../service/projectService';
 import { useUser } from '../context/UserContext';
-import ProjectList from './ProjectList'; 
+import ProjectList from '../component/ProjectList'; 
 
 export default function CreateProjectPage() {
     const [showPopUP, setShowPopUp] = useState(false);
@@ -53,7 +53,9 @@ export default function CreateProjectPage() {
             <main className="main-content">
                 {projects.length === 0 ? (
                     <>
-                        <h1>Create a New Project</h1>
+                        <h1 style={{ textAlign: 'center' }}>Create a New Project</h1>
+
+
                         <img
                             src="/assets/cuate.png"
                             alt="Create Project Illustration"
@@ -68,12 +70,21 @@ export default function CreateProjectPage() {
                     </>
                 ) : (
                     <>
-                        <h1>Projects</h1>
-                        <ProjectList projects={projects} />
-                        <button onClick={handleCreateProjectClick} className="create-button">
-                            + Create New Project
-                        </button>
-                    </>
+
+<div className="projects-header">
+  <h1>Projects</h1>
+  <button onClick={handleCreateProjectClick} className="create-button">
+    + Create New Project
+  </button>
+</div>
+
+<div className="projects-section">
+  <ProjectList projects={projects} />
+</div>
+
+</>
+
+                  
                 )}
 
                 {showPopUP && (

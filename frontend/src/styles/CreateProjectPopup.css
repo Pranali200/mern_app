@@ -2,62 +2,87 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 999;
+    justify-content: center;
+    z-index: 1000;
   }
   
-  .popup {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    width: 400px;
-    text-align: center;
+  .popup-container {
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px 32px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
   
-  .popup h2 {
-    margin-bottom: 20px;
+  .popup-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: left;
   }
   
-  .popup input {
+  .popup-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  .popup-input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    outline: none;
   }
   
-  .popup .error {
-    color: red;
+  .popup-input:focus {
+    border-color: #6634e9;
+  }
+  
+  .popup-error {
+    color: #e53935;
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-top: 4px;
+    text-align: left;
   }
   
   .popup-buttons {
+    margin-top: 24px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    justify-content: flex-end;
+    gap: 16px;
   }
   
-  .cancel-button {
-    background: transparent;
+  .popup-cancel {
+    background: none;
     border: none;
-    color: red;
+    color: #f44336;
+    font-weight: bold;
     font-size: 16px;
     cursor: pointer;
+    margin-right: auto;
   }
   
-  .create-button {
-    background-color: #7b2cbf;
+  .popup-create {
+    background-color: #8338ec;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 24px;
+    border-radius: 8px;
     font-size: 16px;
-    border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
+  }
+  
+  .popup-create:hover {
+    background-color: #6f2fd2;
   }
   

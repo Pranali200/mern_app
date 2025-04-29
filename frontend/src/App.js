@@ -1,11 +1,11 @@
 import LoginPage from './pages/LoginPage';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import CreateAccountPage from './pages/CreateAccount';
+import CreateAccountPage from './pages/CreateAccountPage';
 import CreateProjectPage from './pages/CreateProjectPage';
 import { UserProvider } from './context/UserContext'
 import AddPodcastPage from './pages/AddPodcastPage';
 import { ProjectProvider } from './context/ProjectContext'
-import ViewPodcast from './pages/ViewPodcast';
+import ViewPodcast from './component/ViewPodcast';
 
 function App() {
   return (
