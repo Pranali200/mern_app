@@ -1,7 +1,7 @@
 import '../styles/LoginPage.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import logoWhite from '../images/logo_white.jpg';
+import logoWhite from '../images/logo_white.png';
 import { login } from '../service/authService'
 import {useUser} from '../context/UserContext'
 

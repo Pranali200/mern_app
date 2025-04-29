@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import CreateProjectPopup from '../component/CreateProjectPopup';
 import { getprojects } from '../service/projectService';
 import { useUser } from '../context/UserContext';
-import ProjectList from '../component/ProjectList'; 
+import ProjectList from '../component/ProjectList';
+import cuate from '../images/cuate.png'
 
 export default function CreateProjectPage() {
     const [showPopUP, setShowPopUp] = useState(false);
@@ -55,9 +56,9 @@ export default function CreateProjectPage() {
                     <>
                         <h1 style={{ textAlign: 'center' }}>Create a New Project</h1>
 
-
+                        
                         <img
-                            src="/images/cuate.png"
+                            src={cuate}
                             alt="Create Project Illustration"
                             className="illustration"
                         />

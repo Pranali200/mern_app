@@ -171,4 +171,16 @@
     margin-bottom: 32px;
     text-align: left;
   }
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+  }
   
+  .logo-image {
+    width: 32px;      
+    height: auto;
+    margin-top: -16px;   
+  }
+  
+ 

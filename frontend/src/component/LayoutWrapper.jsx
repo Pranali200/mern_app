@@ -3,6 +3,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useProject } from '../context/ProjectContext';
 import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import logoWhite from '../images/logo_white.png';
+
 export default function LayoutWrapper({ children, sectionTitle }) {
   const { project } = useProject();
   const { user, setUser } = useUser();
@@ -24,8 +26,12 @@ export default function LayoutWrapper({ children, sectionTitle }) {
     <div className="page-container">
       <div className="page-content">
         <aside className="sidebar">
-          <h1>Ques.AI</h1>
+        <div className="logo-container">
+  <img src={logoWhite} alt="Ques.AI Logo" className="logo-image" />
+ 
 
+          <h1>Ques.AI</h1>
+          </div>
           <div className="sidebar-main">
             <nav>
               <button><i className="fas fa-plus"></i> Add your Podcast(s)</button>

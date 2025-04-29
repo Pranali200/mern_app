@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from "../service/authService";
-import logoWhite from '../images/logo_white.jpg'; 
+import logoWhite from '../images/logo_white.png';
 import { useUser } from '../context/UserContext';
 
 export default function CreateAccountPage() {
